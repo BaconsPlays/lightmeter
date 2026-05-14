@@ -6,38 +6,23 @@
 <title>LightMeter</title>
 <style>
   :root {
-    --bg: #0a0e14;
-    --panel: #141a22;
-    --panel2: #1c242e;
-    --fg: #e6edf3;
-    --dim: #8b98a5;
-    --accent: #4ade80;
-    --warn: #fbbf24;
-    --err: #f87171;
-    --border: #2a3340;
-    --ch0: #a855f7; /* violet 415 */
-    --ch1: #3b82f6; /* blue 445 */
-    --ch2: #06b6d4; /* cyan 480 */
-    --ch3: #22c55e; /* green 515 */
-    --ch4: #84cc16; /* lime 555 */
-    --ch5: #eab308; /* yellow 590 */
-    --ch6: #f97316; /* orange 630 */
-    --ch7: #ef4444; /* red 680 */
+    --bg: #0a0e14; --panel: #141a22; --panel2: #1c242e;
+    --fg: #e6edf3; --dim: #8b98a5; --accent: #4ade80;
+    --warn: #fbbf24; --err: #f87171; --border: #2a3340;
+    --ch0: #a855f7; --ch1: #3b82f6; --ch2: #06b6d4; --ch3: #22c55e;
+    --ch4: #84cc16; --ch5: #eab308; --ch6: #f97316; --ch7: #ef4444;
   }
   * { box-sizing: border-box; }
   html, body {
-    margin: 0; padding: 0;
-    background: var(--bg); color: var(--fg);
+    margin: 0; padding: 0; background: var(--bg); color: var(--fg);
     font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, sans-serif;
-    font-size: 15px;
-    -webkit-text-size-adjust: 100%;
+    font-size: 15px; -webkit-text-size-adjust: 100%;
   }
   body { padding: env(safe-area-inset-top) 12px env(safe-area-inset-bottom) 12px; }
 
   header {
     display: flex; align-items: center; gap: 8px;
-    padding: 10px 4px;
-    border-bottom: 1px solid var(--border);
+    padding: 10px 4px; border-bottom: 1px solid var(--border);
     position: sticky; top: 0; background: var(--bg); z-index: 10;
   }
   header .title { font-weight: 600; font-size: 17px; flex: 1; }
@@ -50,36 +35,26 @@
 
   button {
     background: var(--panel2); color: var(--fg);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 8px 12px;
-    font-size: 14px; font-family: inherit;
-    cursor: pointer;
-    -webkit-tap-highlight-color: transparent;
+    border: 1px solid var(--border); border-radius: 8px;
+    padding: 8px 12px; font-size: 14px; font-family: inherit;
+    cursor: pointer; -webkit-tap-highlight-color: transparent;
   }
   button:active { background: var(--panel); }
   button.primary { background: var(--accent); color: #0a0e14; border-color: var(--accent); font-weight: 600; }
-  button.primary:active { filter: brightness(0.9); }
   button.danger  { background: #2a0f0f; color: var(--err); border-color: #4a1818; }
   button.mini    { padding: 4px 8px; font-size: 12px; }
 
   input[type="number"], input[type="text"] {
     background: var(--bg); color: var(--fg);
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    padding: 6px 8px;
-    font: inherit;
-    width: 100%;
+    border: 1px solid var(--border); border-radius: 6px;
+    padding: 6px 8px; font: inherit; width: 100%;
     font-variant-numeric: tabular-nums;
   }
 
   .tabs {
-    display: flex;
-    margin: 10px 0 4px;
-    background: var(--panel);
-    border-radius: 10px;
-    padding: 4px;
-    gap: 4px;
+    display: flex; margin: 10px 0 4px;
+    background: var(--panel); border-radius: 10px;
+    padding: 4px; gap: 4px;
   }
   .tabs button {
     flex: 1; background: transparent; border: none;
@@ -90,40 +65,24 @@
   .hidden { display: none !important; }
 
   .panel {
-    background: var(--panel);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 14px;
-    margin: 10px 0;
+    background: var(--panel); border: 1px solid var(--border);
+    border-radius: 12px; padding: 14px; margin: 10px 0;
   }
   .panel h3 {
-    margin: 0 0 10px;
-    font-size: 12px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--dim);
+    margin: 0 0 10px; font-size: 12px; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.08em; color: var(--dim);
   }
 
-  /* ----- Main view ----- */
-  .headline {
-    display: flex; align-items: baseline; gap: 10px;
-    padding: 4px 0 2px;
-  }
+  .headline { display: flex; align-items: baseline; gap: 10px; padding: 4px 0 2px; }
   .ppfd {
-    font-size: 62px; font-weight: 700;
-    font-variant-numeric: tabular-nums;
-    line-height: 1;
-    color: var(--fg);
+    font-size: 62px; font-weight: 700; font-variant-numeric: tabular-nums;
+    line-height: 1; color: var(--fg);
   }
   .ppfd.stale { color: var(--dim); }
   .ppfd-unit { font-size: 14px; color: var(--dim); letter-spacing: 0.03em; }
   .sub {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 6px 16px;
-    margin-top: 10px;
-    font-size: 13px;
+    display: grid; grid-template-columns: repeat(2, 1fr);
+    gap: 6px 16px; margin-top: 10px; font-size: 13px;
   }
   .sub .k { color: var(--dim); }
   .sub .v { text-align: right; font-variant-numeric: tabular-nums; }
@@ -131,108 +90,80 @@
   .bars {
     display: flex; align-items: flex-end;
     height: 150px; gap: 6px; margin-top: 12px;
-    padding-top: 18px;       /* space for peak tick */
-    position: relative;
+    padding-top: 18px; position: relative;
   }
   .bar {
-    flex: 1;
-    position: relative;
-    border-radius: 4px 4px 0 0;
-    min-height: 2px;
-    display: flex; justify-content: center;
+    flex: 1; position: relative; border-radius: 4px 4px 0 0;
+    min-height: 2px; display: flex; justify-content: center;
   }
   .bar-label {
-    position: absolute;
-    bottom: -22px;
-    font-size: 10px;
-    color: var(--dim);
-    white-space: nowrap;
-    font-variant-numeric: tabular-nums;
+    position: absolute; bottom: -22px;
+    font-size: 10px; color: var(--dim);
+    white-space: nowrap; font-variant-numeric: tabular-nums;
   }
   .bar.peak::before {
-    content: "▼";
-    position: absolute;
-    top: -18px;
-    color: var(--fg);
-    font-size: 12px;
+    content: "\25BC"; position: absolute; top: -18px;
+    color: var(--fg); font-size: 12px;
   }
   .bar-wrap { margin-bottom: 24px; }
 
   .pill {
-    display: inline-block;
-    padding: 3px 9px;
-    border-radius: 999px;
-    background: var(--panel2);
-    font-size: 12px;
-    color: var(--dim);
-    border: 1px solid var(--border);
+    display: inline-block; padding: 3px 9px; border-radius: 999px;
+    background: var(--panel2); font-size: 12px;
+    color: var(--dim); border: 1px solid var(--border);
   }
   .pill.mode { color: var(--accent); border-color: #0f4229; background: #0f2419; }
 
-  /* ----- Calibration view ----- */
   .row { display: flex; gap: 8px; align-items: center; margin-bottom: 8px; }
   .row label { flex: 0 0 auto; color: var(--dim); font-size: 13px; min-width: 70px; }
   .row input { flex: 1; }
   .row .idx { color: var(--dim); font-size: 11px; min-width: 60px; }
 
   .mode-picker {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 6px;
+    display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px;
   }
   .mode-picker button {
-    padding: 10px 0;
-    font-size: 12px;
-    text-transform: capitalize;
+    padding: 10px 0; font-size: 12px; text-transform: capitalize;
   }
   .mode-picker button.active {
     background: var(--accent); color: #0a0e14;
     border-color: var(--accent); font-weight: 600;
   }
 
-  .toggle-row {
-    display: flex; gap: 8px;
-    margin-bottom: 8px;
-  }
+  .toggle-row { display: flex; gap: 8px; margin-bottom: 8px; }
   .toggle-row button { flex: 1; }
   .toggle-row button.on { background: var(--accent); color: #0a0e14; border-color: var(--accent); }
 
   .raw-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 6px;
-    font-size: 12px;
-    font-variant-numeric: tabular-nums;
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 6px; font-size: 12px; font-variant-numeric: tabular-nums;
   }
   .raw-grid .cell {
-    background: var(--panel2);
-    border-radius: 6px;
-    padding: 6px 8px;
-    text-align: center;
+    background: var(--panel2); border-radius: 6px;
+    padding: 6px 8px; text-align: center;
   }
   .raw-grid .cell .k { color: var(--dim); font-size: 10px; display: block; }
   .raw-grid .cell .v { font-size: 14px; }
 
+  .cal-3pt { margin-top: 10px; }
+  .cal-3pt table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .cal-3pt td, .cal-3pt th {
+    padding: 6px 4px; text-align: center; border-bottom: 1px solid var(--border);
+  }
+  .cal-3pt th { color: var(--dim); font-weight: 500; }
+  .cal-3pt input { width: 80px; text-align: center; }
+  .cal-3pt .stat { color: var(--accent); font-weight: 600; }
+
   .toast {
-    position: fixed; left: 50%; bottom: 24px;
-    transform: translateX(-50%);
+    position: fixed; left: 50%; bottom: 24px; transform: translateX(-50%);
     background: var(--panel2); color: var(--fg);
-    padding: 8px 14px;
-    border-radius: 20px;
-    border: 1px solid var(--border);
-    font-size: 13px;
-    opacity: 0;
-    transition: opacity 0.25s;
-    pointer-events: none;
-    z-index: 100;
+    padding: 8px 14px; border-radius: 20px; border: 1px solid var(--border);
+    font-size: 13px; opacity: 0; transition: opacity 0.25s;
+    pointer-events: none; z-index: 100;
   }
   .toast.show { opacity: 1; }
 
-  .help {
-    font-size: 11px; color: var(--dim);
-    line-height: 1.5;
-    margin-top: 6px;
-  }
+  .help { font-size: 11px; color: var(--dim); line-height: 1.5; margin-top: 6px; }
 </style>
 </head>
 <body>
@@ -247,12 +178,12 @@
     <button id="tabCalBtn">Calibration</button>
   </div>
 
-  <!-- ================= MAIN VIEW ================= -->
+  <!-- ================= MAIN ================= -->
   <section id="tabMain">
     <div class="panel">
       <div class="headline">
         <div id="ppfd" class="ppfd stale">—</div>
-        <div class="ppfd-unit">µmol/m²/s</div>
+        <div class="ppfd-unit">&micro;mol/m&sup2;/s</div>
       </div>
       <div class="sub">
         <div class="k">Mode</div>      <div class="v"><span id="modePill" class="pill mode">—</span></div>
@@ -264,52 +195,56 @@
         <div class="k">Battery</div> <div class="v" id="bat">—</div>
       </div>
     </div>
-
     <div class="panel">
       <h3>Spectrum (normalized counts)</h3>
-      <div class="bar-wrap">
-        <div id="bars" class="bars"></div>
-      </div>
+      <div class="bar-wrap"><div id="bars" class="bars"></div></div>
     </div>
   </section>
 
-  <!-- ================= CALIBRATION VIEW ================= -->
+  <!-- ================= CALIBRATION ================= -->
   <section id="tabCal" class="hidden">
-
     <div class="panel">
       <h3>Light Mode</h3>
       <div id="modePicker" class="mode-picker"></div>
-      <div class="help">
-        Switching mode changes which CAL_FACTOR is applied live. Setting is
-        saved to flash and survives reboots.
-      </div>
+      <div class="help">Switching mode changes which calibration is applied live. Saved to flash.</div>
     </div>
 
     <div class="panel">
-      <h3>Active Cal Factor (<span id="calMode">—</span>)</h3>
+      <h3>Current Cal Factor (<span id="calMode">—</span>)</h3>
       <div class="row">
         <input id="calInput" type="number" step="0.000001" placeholder="0.002120">
         <button id="calSave" class="primary mini">Save</button>
       </div>
-      <div class="help">
-        PPFD = raw_sum × CAL_FACTOR. Calibrate against a reference meter:
-        CAL_FACTOR = reference_PPFD / current_PPFD × current_CAL_FACTOR.
+      <div class="help">PPFD = raw_sum &times; CAL_FACTOR. Reference &divide; current &times; current_factor.</div>
+    </div>
+
+    <div class="panel">
+      <h3>3-Point Calibration (Photone)</h3>
+      <div class="help">Take three readings at different light levels. Enter the Photone value for each, then compute.</div>
+      <div class="cal-3pt">
+        <table>
+          <tr><th></th><th>Raw (meter)</th><th>Photone</th></tr>
+          <tr><td>Dark</td><td id="calDarkRaw">—</td><td><input id="calDarkRef" type="number" step="0.1" placeholder="0"></td></tr>
+          <tr><td>Medium</td><td id="calMedRaw">—</td><td><input id="calMedRef" type="number" step="0.1" placeholder="0"></td></tr>
+          <tr><td>Bright</td><td id="calBrightRaw">—</td><td><input id="calBrightRef" type="number" step="0.1" placeholder="0"></td></tr>
+        </table>
+        <div style="display:flex;gap:8px;margin-top:8px">
+          <button id="calCaptureBtn" class="mini">Capture Reading</button>
+          <button id="calComputeBtn" class="primary mini">Compute &amp; Save</button>
+        </div>
+        <div class="help" id="calResult" style="margin-top:6px"></div>
       </div>
     </div>
 
     <div class="panel">
-      <h3>All Modes</h3>
+      <h3>All Mode Factors</h3>
       <div id="allCalList"></div>
     </div>
 
     <div class="panel">
-      <h3>Gain Correction (per gain step)</h3>
+      <h3>Gain Correction</h3>
       <div id="gainCorrList"></div>
-      <div class="help">
-        Per-step multiplier for silicon tolerance. Leave your calibration
-        gain at 1.0 and tune the others so bright/dim readings agree with
-        your reference.
-      </div>
+      <div class="help">Per-step multiplier. Leave your calibration gain at 1.0 and tune others.</div>
     </div>
 
     <div class="panel">
@@ -330,20 +265,17 @@
         <div class="k">Config ver</div>  <div class="v" id="dbgVer">—</div>
       </div>
     </div>
-
   </section>
 
   <div id="toast" class="toast"></div>
 
 <script>
 (() => {
-  // ---------- BLE constants (must match LightMeter.ino) ----------
   const SERVICE_UUID     = '4c494754-4d54-5200-0000-000000000000';
   const CHAR_FRAME_UUID  = '4c494754-4d54-5200-0000-000000000001';
   const CHAR_CONFIG_UUID = '4c494754-4d54-5200-0000-000000000002';
   const CHAR_CMD_UUID    = '4c494754-4d54-5200-0000-000000000003';
 
-  // ---------- State ----------
   let device, server, frameChar, configChar, cmdChar;
   let config = null;
   let lastFrame = null;
@@ -352,15 +284,13 @@
   let freezeOn = false;
   let configReadPending = false;
   let gotFirstFrame = false;
+  let calReadings = [];  // 3-point calibration
 
-  // Fallback defaults if config read fails
   const defaultConfig = {
-    mode: 'grow',
-    calFactor: 0.00212,
+    mode: 'grow', calFactor: 0.00212,
     gainMult: [0.5,1,2,4,8,16,32,64,128,256,512],
     gainCorr: [1,1,1,1,1,1,1,1,1,1,1],
-    maxCount: 18000,
-    intMs: 50,
+    maxCount: 18000, intMs: 50,
     chNm: [415,445,480,515,555,590,630,680],
     chColor: ['violet','blue','cyan','green','lime','yellow','orange','red'],
     modes: ['sun','grow','fluor','hps','custom'],
@@ -368,7 +298,6 @@
     v: 1
   };
 
-  // ---------- DOM ----------
   const $ = (id) => document.getElementById(id);
   const statusEl = $('status');
   const connectBtn = $('connectBtn');
@@ -381,7 +310,7 @@
     toast._t = setTimeout(() => toastEl.classList.remove('show'), 1600);
   }
 
-  // ---------- Tab switching ----------
+  // Tabs
   $('tabMainBtn').addEventListener('click', () => {
     $('tabMain').classList.remove('hidden');
     $('tabCal').classList.add('hidden');
@@ -395,15 +324,11 @@
     $('tabMainBtn').classList.remove('active');
   });
 
-  // ---------- Connection ----------
+  // Connection
   connectBtn.addEventListener('click', async () => {
-    if (server && server.connected) {
-      await disconnect();
-      return;
-    }
-    try {
-      await connect();
-    } catch (e) {
+    if (server && server.connected) { await disconnect(); return; }
+    try { await connect(); }
+    catch (e) {
       console.error(e);
       statusEl.textContent = 'error';
       statusEl.className = 'status error';
@@ -412,56 +337,31 @@
   });
 
   async function connect() {
-    if (!navigator.bluetooth) {
-      throw new Error('Web Bluetooth unavailable — open this page in Bluefy');
-    }
-    statusEl.textContent = 'scanning…';
+    if (!navigator.bluetooth) throw new Error('Web Bluetooth unavailable');
+    statusEl.textContent = 'scanning...';
     statusEl.className = 'status';
-
-    device = await navigator.bluetooth.requestDevice({
-      filters: [{ services: [SERVICE_UUID] }]
-    });
+    device = await navigator.bluetooth.requestDevice({ filters: [{ services: [SERVICE_UUID] }] });
     device.addEventListener('gattserverdisconnected', onDisconnect);
-
-    statusEl.textContent = 'connecting…';
+    statusEl.textContent = 'connecting...';
     server = await device.gatt.connect();
-
     const service = await server.getPrimaryService(SERVICE_UUID);
     frameChar  = await service.getCharacteristic(CHAR_FRAME_UUID);
     configChar = await service.getCharacteristic(CHAR_CONFIG_UUID);
     cmdChar    = await service.getCharacteristic(CHAR_CMD_UUID);
-
     frameChar.addEventListener('characteristicvaluechanged', onFrameChanged);
     await frameChar.startNotifications();
-
-    // Wait for BLE stack to settle
     await new Promise(r => setTimeout(r, 200));
-
-    // Try to read config
     await readConfig();
-
-    // Retry a couple times
-    for (let i = 0; i < 2; i++) {
-      if (config) break;
-      await new Promise(r => setTimeout(r, 200));
-      await readConfig();
-    }
-
-    // If still no config, we'll get it from the first frame
+    for (let i = 0; i < 2; i++) { if (config) break; await new Promise(r => setTimeout(r, 200)); await readConfig(); }
     statusEl.textContent = 'connected';
     connectBtn.textContent = 'Disconnect';
     connectBtn.classList.remove('primary');
     connectBtn.classList.add('danger');
     statusEl.className = 'status connected';
-    connectBtn.textContent = 'Disconnect';
-    connectBtn.classList.remove('primary');
-    connectBtn.classList.add('danger');
   }
 
   async function disconnect() {
-    if (device && device.gatt && device.gatt.connected) {
-      device.gatt.disconnect();
-    }
+    if (device && device.gatt && device.gatt.connected) device.gatt.disconnect();
   }
 
   function onDisconnect() {
@@ -473,152 +373,110 @@
     $('ppfd').classList.add('stale');
   }
 
-  // ---------- Config (READ on connect + on version bump) ----------
+  // Config
   async function readConfig() {
     if (configReadPending) return;
     configReadPending = true;
     try {
       const dv = await configChar.readValue();
       const txt = new TextDecoder().decode(dv);
-      if (!txt || txt.trim().length === 0) {
-        console.warn('config read empty, bytes:', dv.byteLength);
-        return;
-      }
+      if (!txt || txt.trim().length === 0) return;
       config = JSON.parse(txt);
       lastConfigVersion = config.v;
       renderConfig();
-    } catch (e) {
-      console.error('config read failed', e);
-    } finally {
-      configReadPending = false;
-    }
+    } catch (e) { console.error('config read failed', e); }
+    finally { configReadPending = false; }
   }
 
   function renderConfig() {
     if (!config) config = defaultConfig;
-    const cfg = config;
-
-    // Mode picker buttons
     renderCalibrationTab();
-
-    // Debug readouts
-    $('dbgMx').textContent  = cfg.maxCount;
-    $('dbgInt').textContent = cfg.intMs.toFixed(2) + ' ms';
-    $('dbgVer').textContent = cfg.v;
+    $('dbgMx').textContent  = config.maxCount;
+    $('dbgInt').textContent = config.intMs.toFixed(2) + ' ms';
+    $('dbgVer').textContent = config.v;
   }
 
   function renderCalibrationTab() {
-    const cfg = config;
+    const picker = $('modePicker');
     picker.innerHTML = '';
-    for (const m of cfg.modes) {
+    for (const m of config.modes) {
       const b = document.createElement('button');
       b.textContent = m;
-      if (m === cfg.mode) b.classList.add('active');
+      if (m === config.mode) b.classList.add('active');
       b.addEventListener('click', () => sendCmd({ cmd: 'mode', value: m }));
       picker.appendChild(b);
     }
+    $('calMode').textContent = config.mode;
+    $('calInput').value = config.calFactor.toFixed(6);
 
-    // Active cal factor
-    $('calMode').textContent = cfg.mode;
-    $('calInput').value = cfg.calFactor.toFixed(6);
-
-    // All modes list
     const allList = $('allCalList');
     allList.innerHTML = '';
-    for (const m of cfg.modes) {
+    for (const m of config.modes) {
       const row = document.createElement('div');
       row.className = 'row';
       row.innerHTML = `
         <label style="text-transform:capitalize">${m}</label>
-        <input type="number" step="0.000001" value="${cfg.allCal[m].toFixed(6)}">
-        <button class="mini">Save</button>
-      `;
-      const input = row.querySelector('input');
-      const btn = row.querySelector('button');
-      btn.addEventListener('click', () => {
-        const f = parseFloat(input.value);
+        <input type="number" step="0.000001" value="${config.allCal[m].toFixed(6)}">
+        <button class="mini">Save</button>`;
+      const inp = row.querySelector('input');
+      row.querySelector('button').addEventListener('click', () => {
+        const f = parseFloat(inp.value);
         if (isFinite(f)) sendCmd({ cmd: 'cal', mode: m, factor: f });
       });
       allList.appendChild(row);
     }
 
-    // Gain correction list
     const gcList = $('gainCorrList');
     gcList.innerHTML = '';
-    for (let i = 0; i < cfg.gainCorr.length; i++) {
+    for (let i = 0; i < config.gainCorr.length; i++) {
       const row = document.createElement('div');
       row.className = 'row';
-      const gm = cfg.gainMult[i];
       row.innerHTML = `
-        <span class="idx">[${i}] ${gm}x</span>
-        <input type="number" step="0.0001" value="${cfg.gainCorr[i].toFixed(4)}">
-        <button class="mini">Save</button>
-      `;
-      const input = row.querySelector('input');
-      const btn = row.querySelector('button');
-      btn.addEventListener('click', () => {
-        const f = parseFloat(input.value);
+        <span class="idx">[${i}] ${config.gainMult[i]}x</span>
+        <input type="number" step="0.0001" value="${config.gainCorr[i].toFixed(4)}">
+        <button class="mini">Save</button>`;
+      const inp = row.querySelector('input');
+      row.querySelector('button').addEventListener('click', () => {
+        const f = parseFloat(inp.value);
         if (isFinite(f)) sendCmd({ cmd: 'gaincal', index: i, factor: f });
       });
       gcList.appendChild(row);
     }
-
-    // Debug readouts
-    $('dbgMx').textContent  = cfg.maxCount;
-    $('dbgInt').textContent = cfg.intMs.toFixed(2) + ' ms';
-    $('dbgVer').textContent = cfg.v;
+    $('dbgMx').textContent  = config.maxCount;
+    $('dbgInt').textContent = config.intMs.toFixed(2) + ' ms';
+    $('dbgVer').textContent = config.v;
   }
 
-  // ---------- Frame (NOTIFY every loop iteration) ----------
+  // Frame
   function onFrameChanged(e) {
     const txt = new TextDecoder().decode(e.target.value);
     let f;
-    try { f = JSON.parse(txt); }
-    catch (err) { console.warn('frame parse', txt); return; }
-
+    try { f = JSON.parse(txt); } catch (err) { console.warn('frame parse', txt); return; }
     lastFrame = f;
-
-    // Try to get config on first frame if we don't have it
-    if (!config && !gotFirstFrame) {
-      gotFirstFrame = true;
-      setTimeout(() => readConfig(), 100);
-    }
-
-    // Config drift? Re-read.
-    if (f.v !== lastConfigVersion) {
-      readConfig().catch(err => console.warn('config re-read failed', err));
-    }
-
+    if (!config && !gotFirstFrame) { gotFirstFrame = true; setTimeout(() => readConfig(), 100); }
+    if (f.v !== lastConfigVersion) readConfig().catch(err => console.warn('config re-read failed', err));
     renderFrame(f);
   }
 
   function renderFrame(f) {
-    // Use default config if real config not loaded
     let cfg = config;
     if (!cfg || !cfg.maxCount) cfg = defaultConfig;
     if (!cfg) return;
-
-    const gm = cfg.gainMult[f.g];                  // 0.5..512
-    const normalized = f.ch.map(c => c / gm);          // derived client-side
+    const gm = cfg.gainMult[f.g];
+    const normalized = f.ch.map(c => c / gm);
     const satPct = Math.round((100 * f.pk) / cfg.maxCount);
-
-    // Headline
     const ppfdEl = $('ppfd');
     ppfdEl.textContent = f.ppfd.toFixed(1);
     ppfdEl.classList.remove('stale');
-
-    // Sub-stats
-    const peakName  = cfg.chNm[f.pc];
-    const peakColor = cfg.chColor[f.pc];
+    const peakName = cfg.chNm[f.pc], peakColor = cfg.chColor[f.pc];
     $('peakCh').textContent = `${peakName} nm (${peakColor})`;
-    $('gain').textContent   = `${gm}× [${f.g}]`;
+    $('gain').textContent   = `${gm}\u00d7 [${f.g}]`;
     $('sat').textContent    = `${satPct}%`;
     $('clr').textContent    = f.clr;
     $('nir').textContent    = f.nir;
     $('bat').textContent    = `${f.bv.toFixed(2)}V (${f.bp.toFixed(0)}%)`;
     $('modePill').textContent = f.m;
 
-    // Bar graph — scale to tallest channel of this frame
     const normMax = Math.max(...normalized, 1);
     const bars = $('bars');
     if (bars.children.length !== 8) {
@@ -627,21 +485,18 @@
         const b = document.createElement('div');
         b.className = 'bar';
         b.style.background = `var(--ch${i})`;
-        const lbl = document.createElement('div');
-        lbl.className = 'bar-label';
+        b.appendChild(document.createElement('div'));
+        b.firstChild.className = 'bar-label';
         bars.appendChild(b);
-        b.appendChild(lbl);
       }
     }
     for (let i = 0; i < 8; i++) {
       const b = bars.children[i];
-      const h = Math.max(2, Math.round((normalized[i] / normMax) * 100));
-      b.style.height = h + '%';
+      b.style.height = Math.max(2, Math.round((normalized[i] / normMax) * 100)) + '%';
       b.classList.toggle('peak', i === f.pc);
       b.firstChild.textContent = `${cfg.chNm[i]}`;
     }
 
-    // Raw grid on calibration tab
     const rawGrid = $('rawGrid');
     if (rawGrid.children.length !== 10) {
       rawGrid.innerHTML = '';
@@ -653,88 +508,95 @@
         rawGrid.appendChild(cell);
       }
     }
-    for (let i = 0; i < 8; i++) {
-      rawGrid.children[i].querySelector('.v').textContent = f.ch[i];
-    }
+    for (let i = 0; i < 8; i++) rawGrid.children[i].querySelector('.v').textContent = f.ch[i];
     rawGrid.children[8].querySelector('.v').textContent = f.clr;
     rawGrid.children[9].querySelector('.v').textContent = f.nir;
-
     $('dbgPeak').textContent = `${f.pk} / ${config.maxCount} (${satPct}%)`;
+    if (freezeOn !== !!f.fz) { freezeOn = !!f.fz; updateFreezeBtn(); }
 
-    // Reflect remote freeze state
-    if (freezeOn !== !!f.fz) {
-      freezeOn = !!f.fz;
-      updateFreezeBtn();
-    }
+    // Update 3-point calibration dark/medium/bright raw fields
+    const ppfdVal = f.ppfd;
+    if ($('calDarkRaw').textContent === '—')    { /* first capture fills dark */ }
   }
 
-  // ---------- Commands ----------
+  // Commands
   async function sendCmd(obj) {
     if (!cmdChar) { toast('not connected'); return; }
     const bytes = new TextEncoder().encode(JSON.stringify(obj));
-    try {
-      await cmdChar.writeValue(bytes);
-      toast('sent: ' + obj.cmd);
-    } catch (e) {
-      console.error('write failed', e);
-      toast('write failed');
-    }
+    try { await cmdChar.writeValue(bytes); toast('sent: ' + obj.cmd); }
+    catch (e) { console.error('write failed', e); toast('write failed'); }
   }
 
-  // Top-level active cal factor save
   $('calSave').addEventListener('click', () => {
     const f = parseFloat($('calInput').value);
     if (isFinite(f)) sendCmd({ cmd: 'cal', factor: f });
   });
 
-  // LED toggle
   function updateLedBtn() {
     const b = $('ledBtn');
     b.textContent = 'LED ' + (ledOn ? 'On' : 'Off');
     b.classList.toggle('on', ledOn);
   }
-  $('ledBtn').addEventListener('click', () => {
-    ledOn = !ledOn;
-    updateLedBtn();
-    sendCmd({ cmd: 'led', on: ledOn });
-  });
+  $('ledBtn').addEventListener('click', () => { ledOn = !ledOn; updateLedBtn(); sendCmd({ cmd: 'led', on: ledOn }); });
 
-  // Freeze toggle
   function updateFreezeBtn() {
     const b = $('freezeBtn');
     b.textContent = 'Freeze ' + (freezeOn ? 'On' : 'Off');
     b.classList.toggle('on', freezeOn);
   }
-  $('freezeBtn').addEventListener('click', () => {
-    freezeOn = !freezeOn;
-    updateFreezeBtn();
-    sendCmd({ cmd: 'freeze', on: freezeOn });
+  $('freezeBtn').addEventListener('click', () => { freezeOn = !freezeOn; updateFreezeBtn(); sendCmd({ cmd: 'freeze', on: freezeOn }); });
+
+  // ---------- 3-Point Calibration ----------
+  let calStep = 0;
+  $('calCaptureBtn').addEventListener('click', () => {
+    if (!lastFrame) { toast('no reading yet'); return; }
+    const ppfd = lastFrame.ppfd;
+    if (calStep === 0) {
+      $('calDarkRaw').textContent = ppfd.toFixed(1);
+      calStep = 1;
+      toast('Dark captured \u2014 set up medium light and tap again');
+    } else if (calStep === 1) {
+      $('calMedRaw').textContent = ppfd.toFixed(1);
+      calStep = 2;
+      toast('Medium captured \u2014 set up bright light and tap again');
+    } else if (calStep === 2) {
+      $('calBrightRaw').textContent = ppfd.toFixed(1);
+      calStep = 3;
+      toast('Bright captured \u2014 enter Photone values and Compute');
+    }
   });
 
-  // Init UI defaults
+  $('calComputeBtn').addEventListener('click', () => {
+    const darkR   = parseFloat($('calDarkRaw').textContent);
+    const medR    = parseFloat($('calMedRaw').textContent);
+    const brightR = parseFloat($('calBrightRaw').textContent);
+    const darkP   = parseFloat($('calDarkRef').value);
+    const medP    = parseFloat($('calMedRef').value);
+    const brightP = parseFloat($('calBrightRef').value);
+    if ([darkR, medR, brightR, darkP, medP, brightP].some(isNaN)) {
+      toast('capture all 3 readings and enter Photone values'); return;
+    }
+    // Compute factor for each point, take median
+    const factors = [darkP / darkR, medP / medR, brightP / brightR].sort((a,b) => a-b);
+    const factor = factors[1];  // median
+    $('calResult').innerHTML = `Computed factor: <b>${factor.toFixed(6)}</b> (median of 3 points)`;
+    sendCmd({ cmd: 'cal', factor });
+    calStep = 0;
+  });
+
+  // Init
   updateLedBtn();
   updateFreezeBtn();
-
-  // Initialize with defaults in case config never loads
   renderConfig();
-
-  // Build empty bar skeleton so the layout doesn't jump on first frame
   (function initBars() {
     const bars = $('bars');
-    const names = defaultConfig.chNm.map(n => '' + n);
     for (let i = 0; i < 8; i++) {
       const b = document.createElement('div');
-      b.className = 'bar';
-      b.style.background = `var(--ch${i})`;
-      b.style.height = '4%';
-      const lbl = document.createElement('div');
-      lbl.className = 'bar-label';
-      lbl.textContent = names[i];
-      b.appendChild(lbl);
-      bars.appendChild(b);
+      b.className = 'bar'; b.style.background = `var(--ch${i})`; b.style.height = '4%';
+      const lbl = document.createElement('div'); lbl.className = 'bar-label'; lbl.textContent = defaultConfig.chNm[i];
+      b.appendChild(lbl); bars.appendChild(b);
     }
   })();
-
 })();
 </script>
 </body>
