@@ -550,19 +550,19 @@
   let calStep = 0;
   $('calCaptureBtn').addEventListener('click', () => {
     if (!lastFrame) { toast('no reading yet'); return; }
-    const ppfd = lastFrame.ppfd;
+    const raw = lastFrame.ru;
     if (calStep === 0) {
-      $('calDarkRaw').textContent = ppfd.toFixed(1);
+      $('calDarkRaw').textContent = raw.toFixed(1);
       calStep = 1;
-      toast('Dark captured \u2014 set up medium light and tap again');
+      toast('Dark captured — set up medium light and tap again');
     } else if (calStep === 1) {
-      $('calMedRaw').textContent = ppfd.toFixed(1);
+      $('calMedRaw').textContent = raw.toFixed(1);
       calStep = 2;
-      toast('Medium captured \u2014 set up bright light and tap again');
+      toast('Medium captured — set up bright light and tap again');
     } else if (calStep === 2) {
-      $('calBrightRaw').textContent = ppfd.toFixed(1);
+      $('calBrightRaw').textContent = raw.toFixed(1);
       calStep = 3;
-      toast('Bright captured \u2014 enter Photone values and Compute');
+      toast('Bright captured — enter Photone values and Compute');
     }
   });
 
